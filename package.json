@@ -1,21 +1,11 @@
 {
-  "name": "song_app",
+  "name": "song-app",
   "version": "1.0.0",
-  "description": "",
-  "main": "script.js",
-  "scripts": {
-    "start": "node script.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/clemritz/song_app.git"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/clemritz/song_app/issues"
-  },
-  "homepage": "https://github.com/clemritz/song_app#readme"
+  "description": "song-app",
+  "main": "index.js",
+  "start": "node navigation.js",
+  "dependencies": {
+    "express": "^4.17.1",
+    "body-parser": "^1.19.0"
+  }
 }
