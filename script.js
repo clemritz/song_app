@@ -106,6 +106,13 @@ function prevTrack() {
   playTrack();
 }
 
+window.addEventListener("keydown", function (event) {
+  if (event.code === "Space") {
+    event.preventDefault(); // Empêche le défilement de la page lorsque la touche Espace est enfoncée
+    playPauseTrack();
+  }
+});
+
 playPauseBtn.addEventListener("click", playPauseTrack);
 nextBtn.addEventListener("click", nextTrack);
 prevBtn.addEventListener("click", prevTrack);
