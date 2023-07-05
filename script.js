@@ -32,10 +32,80 @@ togglePlayer.addEventListener("click", function () {
   }
 });
 
-// let soundBarsLottie = bodymovin.loadAnimation({
-//   container: soundBars,
-//   renderer: "svg",
-//   loop: true,
-//   autoPlay: false,
-//   path: "https://assets5.lottiefiles.com/packages/lf20_jJJk6i.json",
-// });
+let soundBarsLottie = bodymovin.loadAnimation({
+  container: soundBars,
+  renderer: "svg",
+  loop: true,
+  autoplay: false,
+  path: "https://assets5.lottiefiles.com/packages/lf20_jJJl6i.json",
+});
+
+let trackList = [
+  {
+    name: "Heroic",
+    artist: "Arc North",
+    path: "/Arc North - Heroic.mp3",
+  },
+  {
+    name: "Dreaming",
+    artist: "Neutrin05",
+    path: "/Neutrin05 - Dreaming in Red.mp3",
+  },
+  {
+    name: "Celeste",
+    artist: "Dimatis",
+    path: "/Dimatis - Celeste.mp3",
+  },
+  {
+    name: "Here",
+    artist: "Extenz",
+    path: "/Extenz - Here.mp3",
+  },
+];
+
+function loadTrack(trackIndex) {
+  currentTrack.src = trackList[trackIndex].path;
+  currentTrack.load();
+  trackName.textContent = trackList[trackIndex].name;
+  trackArtist.textContent = trackList[trackIndex].artist;
+  currentTrack.addEventListener("ended", nextTrack);
+}
+
+loadTrack(trackIndex);
+
+function playPauseTrack() {
+  if (!isPlaying) playTrack();
+  else pauseTrack();
+}
+
+function playTrack() {
+  currentTrack.play();
+  isPlaying = true;
+  playPauseBtn.innerHTML = '<ion-icon name="pause-sharp"></ion-icon>';
+  soundBarsLottie.playSegments([0, 120], true);
+}
+
+function pauseTrack() {
+  currentTrack.pause();
+  isPlaying = false;
+  playPauseBtn.innerHTML = '<ion-icon name="play-sharp"></ion-icon>';
+  soundBarsLottie.stop();
+}
+
+function nextTrack() {
+  if (trackIndex < trackList.length - 1) trackIndex += 1;
+  else trackIndex = 0;
+  loadTrack(trackIndex);
+  playTrack();
+}
+
+function prevTrack() {
+  if (trackIndex > 0) trackIndex -= 1;
+  else trackIndex = trackList.length - 1;
+  loadTrack(trackIndex);
+  playTrack();
+}
+
+playPauseBtn.addEventListener("click", playPauseTrack);
+nextBtn.addEventListener("click", nextTrack);
+prevBtn.addEventListener("click", prevTrack);
